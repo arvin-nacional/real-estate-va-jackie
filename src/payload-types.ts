@@ -191,7 +191,18 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | HeroSectionBlock
+    | ServicesPreviewBlock
+    | WhyChooseMeBlock
+    | TestimonialBlock
+    | SiteHeaderBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -390,45 +401,34 @@ export interface User {
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
+  /**
+   * Choose the background style for this call to action section
+   */
+  backgroundType: 'colored' | 'white';
+  heading: string;
+  description: string;
+  links: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: ('default' | 'outline') | null;
     };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
+    id?: string | null;
+  }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'cta';
@@ -729,6 +729,131 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroSectionBlock".
+ */
+export interface HeroSectionBlock {
+  heading: string;
+  description: string;
+  image: string | Media;
+  links: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: ('default' | 'outline') | null;
+    };
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesPreviewBlock".
+ */
+export interface ServicesPreviewBlock {
+  backgroundType?: ('colored' | 'white') | null;
+  heading: string;
+  subheading: string;
+  services: {
+    title: string;
+    description: string;
+    icon: 'ClipBoard' | 'Chat' | 'Search' | 'NotePad' | 'Image' | 'MailCheck';
+    id?: string | null;
+  }[];
+  buttonText: string;
+  buttonLink: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'servicesPreview';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyChooseMeBlock".
+ */
+export interface WhyChooseMeBlock {
+  /**
+   * Choose the background color for this section
+   */
+  backgroundType: 'white' | 'gray' | 'accent';
+  heading: string;
+  subheading: string;
+  /**
+   * Select or upload an image of yourself or your work
+   */
+  image?: (string | null) | Media;
+  /**
+   * Choose which side the image should appear on
+   */
+  imagePosition: 'right' | 'left';
+  /**
+   * Add benefits that highlight why clients should choose you
+   */
+  benefits?:
+    | {
+        /**
+         * The title of this benefit
+         */
+        title: string;
+        /**
+         * A brief description of this benefit
+         */
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whyChooseMe';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock".
+ */
+export interface TestimonialBlock {
+  backgroundType?: ('colored' | 'white') | null;
+  heading: string;
+  subheading: string;
+  testimonials?:
+    | {
+        quote: string;
+        author: string;
+        title: string;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SiteHeaderBlock".
+ */
+export interface SiteHeaderBlock {
+  heading: string;
+  description: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'siteHeader';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1018,6 +1143,11 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        heroSection?: T | HeroSectionBlockSelect<T>;
+        servicesPreview?: T | ServicesPreviewBlockSelect<T>;
+        whyChooseMe?: T | WhyChooseMeBlockSelect<T>;
+        testimonial?: T | TestimonialBlockSelect<T>;
+        siteHeader?: T | SiteHeaderBlockSelect<T>;
       };
   meta?:
     | T
@@ -1038,7 +1168,9 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "CallToActionBlock_select".
  */
 export interface CallToActionBlockSelect<T extends boolean = true> {
-  richText?: T;
+  backgroundType?: T;
+  heading?: T;
+  description?: T;
   links?:
     | T
     | {
@@ -1114,6 +1246,103 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroSectionBlock_select".
+ */
+export interface HeroSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  image?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesPreviewBlock_select".
+ */
+export interface ServicesPreviewBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  subheading?: T;
+  services?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  buttonText?: T;
+  buttonLink?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhyChooseMeBlock_select".
+ */
+export interface WhyChooseMeBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  subheading?: T;
+  image?: T;
+  imagePosition?: T;
+  benefits?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialBlock_select".
+ */
+export interface TestimonialBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  subheading?: T;
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        author?: T;
+        title?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SiteHeaderBlock_select".
+ */
+export interface SiteHeaderBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
   id?: T;
   blockName?: T;
 }
