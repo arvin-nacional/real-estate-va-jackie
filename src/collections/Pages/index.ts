@@ -12,6 +12,10 @@ import { ServicesPreview } from '../../blocks/ServicesPreview/config'
 import { WhyChooseMe } from '../../blocks/WhyChooseMe/config'
 import { Testimonial } from '../../blocks/Testimonial/config'
 import { SiteHeader } from '../../blocks/SiteHeader/config'
+import { Story } from '../../blocks/Story/config'
+import { Expertise } from '../../blocks/Expertise/config'
+import { Approach } from '../../blocks/Approach/config'
+import { FAQ } from '../../blocks/FAQ/config'
 
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -92,6 +96,10 @@ export const Pages: CollectionConfig<'pages'> = {
                 WhyChooseMe,
                 Testimonial,
                 SiteHeader,
+                Story,
+                Expertise,
+                Approach,
+                FAQ,
               ],
               required: true,
               admin: {

@@ -202,6 +202,10 @@ export interface Page {
     | WhyChooseMeBlock
     | TestimonialBlock
     | SiteHeaderBlock
+    | StoryBlock
+    | ExpertiseBlock
+    | ApproachBlock
+    | FAQBlock
   )[];
   meta?: {
     title?: string | null;
@@ -854,6 +858,137 @@ export interface SiteHeaderBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StoryBlock".
+ */
+export interface StoryBlock {
+  backgroundType: 'white' | 'gray' | 'accent';
+  heading: string;
+  subheading?: string | null;
+  image?: (string | null) | Media;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Choose which side the image should appear on
+   */
+  imagePosition: 'right' | 'left';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'story';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExpertiseBlock".
+ */
+export interface ExpertiseBlock {
+  /**
+   * Choose the background color for this section
+   */
+  backgroundType: 'white' | 'gray' | 'accent';
+  heading: string;
+  subheading: string;
+  /**
+   * Add categories of expertise with their respective skills
+   */
+  expertiseCategories?:
+    | {
+        /**
+         * The title of this expertise category (e.g., "Industry Knowledge", "Technical Skills")
+         */
+        title: string;
+        /**
+         * List of skills under this category
+         */
+        skills: {
+          /**
+           * A specific skill or capability
+           */
+          skill: string;
+          id?: string | null;
+        }[];
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'expertise';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApproachBlock".
+ */
+export interface ApproachBlock {
+  /**
+   * Choose the background color for this section
+   */
+  backgroundType: 'white' | 'gray' | 'accent';
+  heading: string;
+  subheading: string;
+  /**
+   * Add steps that outline your approach to working with clients
+   */
+  steps?:
+    | {
+        /**
+         * The title of this step (e.g., "Understand", "Customize", "Execute")
+         */
+        title: string;
+        /**
+         * A brief description of this step
+         */
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'approach';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock".
+ */
+export interface FAQBlock {
+  /**
+   * Choose the background color for this section
+   */
+  backgroundType: 'white' | 'gray' | 'accent';
+  heading: string;
+  subheading: string;
+  /**
+   * Add frequently asked questions and their answers
+   */
+  faqs?:
+    | {
+        /**
+         * The question being asked
+         */
+        question: string;
+        /**
+         * The answer to the question
+         */
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1148,6 +1283,10 @@ export interface PagesSelect<T extends boolean = true> {
         whyChooseMe?: T | WhyChooseMeBlockSelect<T>;
         testimonial?: T | TestimonialBlockSelect<T>;
         siteHeader?: T | SiteHeaderBlockSelect<T>;
+        story?: T | StoryBlockSelect<T>;
+        expertise?: T | ExpertiseBlockSelect<T>;
+        approach?: T | ApproachBlockSelect<T>;
+        faq?: T | FAQBlockSelect<T>;
       };
   meta?:
     | T
@@ -1343,6 +1482,79 @@ export interface TestimonialBlockSelect<T extends boolean = true> {
 export interface SiteHeaderBlockSelect<T extends boolean = true> {
   heading?: T;
   description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StoryBlock_select".
+ */
+export interface StoryBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  subheading?: T;
+  image?: T;
+  richText?: T;
+  imagePosition?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExpertiseBlock_select".
+ */
+export interface ExpertiseBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  subheading?: T;
+  expertiseCategories?:
+    | T
+    | {
+        title?: T;
+        skills?:
+          | T
+          | {
+              skill?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApproachBlock_select".
+ */
+export interface ApproachBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  subheading?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock_select".
+ */
+export interface FAQBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  subheading?: T;
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

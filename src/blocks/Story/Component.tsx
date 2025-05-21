@@ -1,33 +1,18 @@
-'use client'
-
+import { cn } from '@/utilities/ui'
 import React from 'react'
-import { CheckCircle } from 'lucide-react'
-import { Media } from '@/components/Media'
 import AnimationWrapper from '@/components/AnimationWrapper'
+import { Media } from '@/components/Media'
 
-// Define the benefit item interface
-interface BenefitItem {
-  title: string
-  description: string
-}
+import { StoryBlock as StoryBLockType } from '@/payload-types'
+import RichText from '@/components/RichText'
 
-// Define the WhyChooseMeBlock interface
-interface WhyChooseMeBlockType {
-  heading?: string
-  subheading?: string
-  image?: any // Media type
-  benefits?: BenefitItem[]
-  backgroundType?: 'white' | 'gray' | 'accent'
-  imagePosition?: 'left' | 'right'
-}
-
-export const WhyChooseMeBlock: React.FC<WhyChooseMeBlockType> = ({
+export const StoryBLock: React.FC<StoryBLockType> = ({
+  backgroundType,
   heading,
   subheading,
   image,
-  benefits = [],
-  backgroundType,
-  imagePosition = 'right',
+  richText,
+  imagePosition,
 }) => {
   // Determine background class based on backgroundType
   const backgroundClass =
@@ -38,7 +23,6 @@ export const WhyChooseMeBlock: React.FC<WhyChooseMeBlockType> = ({
         : backgroundType === 'accent'
           ? 'bg-primary/10'
           : 'bg-white'
-
   // Create content section and image section as separate elements
   const contentSection = (
     <AnimationWrapper
@@ -47,28 +31,10 @@ export const WhyChooseMeBlock: React.FC<WhyChooseMeBlockType> = ({
       distance={30}
     >
       <div className="space-y-2">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          {heading || 'Why Choose Me'}
-        </h2>
-        <p className="max-w-[600px] text-muted-foreground md:text-xl">
-          {subheading ||
-            'With specialized experience in real estate operations, I deliver exceptional support tailored to your business needs.'}
-        </p>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{heading}</h2>
+        <p className="max-w-[600px] text-muted-foreground md:text-xl">{subheading}</p>
+        {richText && <RichText data={richText} enableGutter={false} />}
       </div>
-      <ul className="grid gap-4">
-        {benefits &&
-          benefits.map((benefit: BenefitItem, index: number) => (
-            <AnimationWrapper key={`benefit-${index}`} direction="up" delay={0.1 * (index + 1)}>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
-                <div>
-                  <h3 className="font-medium">{benefit.title}</h3>
-                  <p className="text-sm text-muted-foreground">{benefit.description}</p>
-                </div>
-              </li>
-            </AnimationWrapper>
-          ))}
-      </ul>
     </AnimationWrapper>
   )
 

@@ -12,6 +12,10 @@ import { HeroSectionBlock } from '@/blocks/HeroSection/Component'
 import { WhyChooseMeBlock } from '@/blocks/WhyChooseMe/Component'
 import { TestimonialBlock } from '@/blocks/Testimonial/Component'
 import { SiteHeaderBlock } from '@/blocks/SiteHeader/Component'
+import { StoryBLock } from '@/blocks/Story/Component'
+import { ExpertiseBlock } from '@/blocks/Expertise/Component'
+import { ApproachBlock } from '@/blocks/Approach/Component'
+import { FAQBlock } from '@/blocks/FAQ/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -24,6 +28,10 @@ const blockComponents = {
   whyChooseMe: WhyChooseMeBlock,
   testimonial: TestimonialBlock,
   siteHeader: SiteHeaderBlock,
+  story: StoryBLock,
+  expertise: ExpertiseBlock,
+  approach: ApproachBlock,
+  faq: FAQBlock,
 }
 
 export const RenderBlocks: React.FC<{
