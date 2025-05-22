@@ -18,6 +18,7 @@ import { ApproachBlock } from '@/blocks/Approach/Component'
 import { FAQBlock } from '@/blocks/FAQ/Component'
 import { ServicesDetailBlock } from '@/blocks/ServicesDetail/Component'
 import { PricingPackagesBlock } from '@/blocks/PricingPackages/Component'
+import { ContactSectionBlock } from '@/blocks/ContactSection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -36,6 +37,7 @@ const blockComponents = {
   faq: FAQBlock,
   servicesDetail: ServicesDetailBlock,
   pricingPackages: PricingPackagesBlock,
+  contactSection: ContactSectionBlock,
 }
 
 export const RenderBlocks: React.FC<{

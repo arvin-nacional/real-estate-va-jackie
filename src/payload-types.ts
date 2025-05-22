@@ -208,6 +208,7 @@ export interface Page {
     | FAQBlock
     | ServicesDetailBlock
     | PricingPackagesBlock
+    | ContactSectionBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1053,6 +1054,44 @@ export interface PricingPackagesBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactSectionBlock".
+ */
+export interface ContactSectionBlock {
+  backgroundType?: ('colored' | 'white') | null;
+  contactInfo: {
+    email: string;
+    phone: string;
+    hours: string;
+    location: string;
+  };
+  consultation: {
+    consultationTitle: string;
+    consultationDescription: string;
+    calendlyUrl: string;
+    calendlyButtonText: string;
+  };
+  social: {
+    socialTitle: string;
+    socialLinks?:
+      | {
+          platform: string;
+          url: string;
+          icon: 'linkedin' | 'instagram' | 'twitter' | 'facebook';
+          id?: string | null;
+        }[]
+      | null;
+  };
+  formSection: {
+    formTitle: string;
+    formDescription: string;
+    form: string | Form;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1353,6 +1392,7 @@ export interface PagesSelect<T extends boolean = true> {
         faq?: T | FAQBlockSelect<T>;
         servicesDetail?: T | ServicesDetailBlockSelect<T>;
         pricingPackages?: T | PricingPackagesBlockSelect<T>;
+        contactSection?: T | ContactSectionBlockSelect<T>;
       };
   meta?:
     | T
@@ -1675,6 +1715,51 @@ export interface PricingPackagesBlockSelect<T extends boolean = true> {
               id?: T;
             };
         id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactSectionBlock_select".
+ */
+export interface ContactSectionBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  contactInfo?:
+    | T
+    | {
+        email?: T;
+        phone?: T;
+        hours?: T;
+        location?: T;
+      };
+  consultation?:
+    | T
+    | {
+        consultationTitle?: T;
+        consultationDescription?: T;
+        calendlyUrl?: T;
+        calendlyButtonText?: T;
+      };
+  social?:
+    | T
+    | {
+        socialTitle?: T;
+        socialLinks?:
+          | T
+          | {
+              platform?: T;
+              url?: T;
+              icon?: T;
+              id?: T;
+            };
+      };
+  formSection?:
+    | T
+    | {
+        formTitle?: T;
+        formDescription?: T;
+        form?: T;
       };
   id?: T;
   blockName?: T;
