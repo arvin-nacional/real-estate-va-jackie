@@ -14,8 +14,8 @@ export const HeroSectionBlock: React.FC<HeroSectionBlockType> = ({
   image,
 }) => {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
-      <div className="container px-4 md:px-6">
+    <section className="w-full py-12 md:py-24 -mt-[50px] h-screen">
+      <div className="container flex justify-center items-center h-full">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <AnimationWrapper
             className="flex flex-col justify-center space-y-4"

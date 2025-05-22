@@ -73,7 +73,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
               </p>
             </div>
 
-            <div className="w-full flex flex-col items-center pt-6 border-t border-gray-100 mt-auto">
+            <div className="w-full flex flex-col items-center ">
               {activeTestimonial?.image &&
                 typeof activeTestimonial.image !== 'string' &&
                 'url' in activeTestimonial.image && (
