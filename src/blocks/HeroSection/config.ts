@@ -5,6 +5,39 @@ export const HeroSection: Block = {
   interfaceName: 'HeroSectionBlock',
   fields: [
     {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Background Image',
+      admin: {
+        description: 'Optional. If provided, this image will be used as the background for the hero section.',
+      },
+    },
+    {
+      name: 'backgroundOverlay',
+      type: 'select',
+      label: 'Background Overlay',
+      defaultValue: 'dark',
+      options: [
+        {
+          label: 'None',
+          value: 'none',
+        },
+        {
+          label: 'Light',
+          value: 'light',
+        },
+        {
+          label: 'Dark',
+          value: 'dark',
+        },
+      ],
+      admin: {
+        description: 'Choose an overlay for the background image to improve text readability.',
+        condition: (data) => Boolean(data?.backgroundImage),
+      },
+    },
+    {
       name: 'heading',
       type: 'text',
       required: true,

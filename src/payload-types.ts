@@ -739,6 +739,14 @@ export interface Form {
  * via the `definition` "HeroSectionBlock".
  */
 export interface HeroSectionBlock {
+  /**
+   * Optional. If provided, this image will be used as the background for the hero section.
+   */
+  backgroundImage?: (string | null) | Media;
+  /**
+   * Choose an overlay for the background image to improve text readability.
+   */
+  backgroundOverlay?: ('none' | 'light' | 'dark') | null;
   heading: string;
   description: string;
   image: string | Media;
@@ -1499,6 +1507,8 @@ export interface FormBlockSelect<T extends boolean = true> {
  * via the `definition` "HeroSectionBlock_select".
  */
 export interface HeroSectionBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
+  backgroundOverlay?: T;
   heading?: T;
   description?: T;
   image?: T;

@@ -26,6 +26,7 @@ export async function Footer() {
               <h1 className="text-2xl font-bold text-gray-800">VA Jackie</h1>
             </Link>
             <p className="text-sm text-gray-600">{description}</p>
+            <ThemeSelector />
           </div>
 
           <div>

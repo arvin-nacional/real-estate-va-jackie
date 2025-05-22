@@ -12,10 +12,35 @@ export const HeroSectionBlock: React.FC<HeroSectionBlockType> = ({
   description,
   links,
   image,
+  backgroundImage,
+  backgroundOverlay = 'dark',
 }) => {
+  // Generate overlay class based on the selected overlay type
+  // const getOverlayClass = () => {
+  //   if (!backgroundImage || backgroundOverlay === 'none') return ''
+
+  //   if (backgroundOverlay === 'light') {
+  //     return 'after:absolute after:inset-0 after:bg-white/70 after:z-0'
+  //   }
+
+  //   return 'after:absolute after:inset-0 after:bg-black/50 after:z-0'
+  // }
+
+  const backgroundStyle = backgroundImage
+    ? ({
+        backgroundImage: `url(${typeof backgroundImage === 'object' && 'url' in backgroundImage ? backgroundImage.url : ''})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        position: 'relative',
+      } as React.CSSProperties)
+    : {}
+
   return (
-    <section className="w-full py-12 md:py-24 -mt-[50px] h-screen">
-      <div className="container flex justify-center items-center h-full">
+    <section
+      className={`w-full max-sm:py-24 py-12 md:py-24 -mt-[50px] lg:h-screen relative`}
+      style={backgroundStyle}
+    >
+      <div className="container flex justify-center items-center h-full relative z-10">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <AnimationWrapper
             className="flex flex-col justify-center space-y-4"

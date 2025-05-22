@@ -20,7 +20,7 @@ export const ServicesPreviewBlock: React.FC<ServicesPreviewBlockType> = ({
   const backgroundClass = backgroundType === 'white' ? 'bg-white' : 'bg-gray-50'
 
   return (
-    <section className={`w-full py-12 md:py-24 lg:py-32 ${backgroundClass}`}>
+    <section className={`w-full py-12 md:py-24 lg:py-32 ${backgroundClass} relative`}>
       <div className="container px-4 md:px-6">
         <AnimationWrapper
           className="flex flex-col items-center justify-center space-y-4 text-center"
