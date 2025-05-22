@@ -49,21 +49,21 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, glow = fa
 const getIconComponent = (iconName: string | undefined) => {
   switch (iconName) {
     case 'clipboard':
-      return <ClipboardCheck size={24} />;
+      return <ClipboardCheck size={24} />
     case 'chart':
-      return <PieChart size={24} />;
+      return <PieChart size={24} />
     case 'message':
-      return <MessageSquare size={24} />;
+      return <MessageSquare size={24} />
     case 'mail':
-      return <MailCheck size={24} />;
+      return <MailCheck size={24} />
     case 'file':
-      return <FileText size={24} />;
+      return <FileText size={24} />
     case 'calendar':
-      return <Calendar size={24} />;
+      return <Calendar size={24} />
     default:
-      return <ClipboardCheck size={24} />;
+      return <ClipboardCheck size={24} />
   }
-};
+}
 
 // Fallback function to get icon by index (for default services)
 const getServiceIcon = (index: number) => {
@@ -73,10 +73,10 @@ const getServiceIcon = (index: number) => {
     <MailCheck key="mail" size={24} />,
     <FileText key="file" size={24} />,
     <Calendar key="calendar" size={24} />,
-    <PieChart key="chart" size={24} />
-  ];
-  return icons[index % icons.length];
-};
+    <PieChart key="chart" size={24} />,
+  ]
+  return icons[index % icons.length]
+}
 
 export const GlowServicesBlock: React.FC<GlowServicesBlockType> = ({
   heading,
