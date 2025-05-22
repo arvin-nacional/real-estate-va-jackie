@@ -10,7 +10,8 @@ export const HeroSection: Block = {
       relationTo: 'media',
       label: 'Background Image',
       admin: {
-        description: 'Optional. If provided, this image will be used as the background for the hero section.',
+        description:
+          'Optional. If provided, this image will be used as the background for the hero section.',
       },
     },
     {
@@ -41,14 +42,14 @@ export const HeroSection: Block = {
       name: 'heading',
       type: 'text',
       required: true,
-      defaultValue: 'About Our Crochet Flowers',
+      defaultValue: 'Your Dedicated Real Estate Virtual Assistant',
     },
     {
       name: 'description',
       type: 'textarea',
       required: true,
       defaultValue:
-        'Each crochet flower is handmade with care and attention to detail. We use only the finest materials to create beautiful, long-lasting pieces that bring joy to any space.',
+        'Streamline your real estate business with professional virtual assistance. Save time, reduce stress, and focus on growing your business.',
     },
     {
       name: 'image',

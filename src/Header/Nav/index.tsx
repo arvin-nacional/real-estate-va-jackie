@@ -12,6 +12,14 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
   const isMobile = useMobile()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  
+  // Get the theme from the Header data
+  const navTheme = data?.theme || 'light'
+  
+  // Define theme classes based on the selected theme
+  const textClass = navTheme === 'dark' ? 'text-gray-300 hover:text-gray-100' : 'text-gray-600 hover:text-gray-800'
+  const menuBgClass = navTheme === 'dark' ? 'bg-gray-900/90 border-gray-800/50' : 'bg-white/90 border-gray-200/50'
+  const menuIconClass = navTheme === 'dark' ? 'text-white' : 'text-gray-800'
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -22,17 +30,17 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
       {isMobile ? (
         <>
           <button onClick={toggleMenu} className="p-2 focus:outline-none" aria-label="Toggle Menu">
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMenuOpen ? <X className={`h-6 w-6 ${menuIconClass}`} /> : <Menu className={`h-6 w-6 ${menuIconClass}`} />}
           </button>
 
           {isMenuOpen && (
-            <div className="absolute top-16 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md backdrop-saturate-150 border-b border-gray-200/50 dark:border-gray-800/50 p-4 flex flex-col space-y-4 shadow-lg">
+            <div className={`absolute top-16 left-0 right-0 ${menuBgClass} backdrop-blur-md backdrop-saturate-150 border-b p-4 flex flex-col space-y-4 shadow-lg`}>
               {navItems.map(({ link }, i) => (
                 <div key={i} onClick={() => setIsMenuOpen(false)}>
                   <CMSLink
                     {...link}
                     appearance="link"
-                    className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-400 transition-all duration-300 hover:translate-x-1"
+                    className={`text-sm font-medium ${textClass} transition-all duration-300 hover:translate-x-1`}
                   />
                 </div>
               ))}
@@ -46,7 +54,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               key={i}
               {...link}
               appearance="link"
-              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-400 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gray-600 dark:after:bg-gray-400 after:transition-all after:duration-300 hover:after:w-full no-underline hover:no-underline"
+              className={`text-sm font-medium ${textClass} relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-current after:opacity-70 after:transition-all after:duration-300 hover:after:w-full no-underline hover:no-underline`}
             />
           ))}
         </nav>

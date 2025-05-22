@@ -6,6 +6,15 @@ export const CallToAction: Block = {
   interfaceName: 'CallToActionBlock',
   fields: [
     {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Background Image',
+      admin: {
+        description: 'Optional. If provided, this image will be used as the background for the call to action section.',
+      },
+    },
+    {
       name: 'backgroundType',
       type: 'select',
       required: true,

@@ -26,20 +26,23 @@ export const HeroSectionBlock: React.FC<HeroSectionBlockType> = ({
   //   return 'after:absolute after:inset-0 after:bg-black/50 after:z-0'
   // }
 
-  const backgroundStyle = backgroundImage
-    ? ({
-        backgroundImage: `url(${typeof backgroundImage === 'object' && 'url' in backgroundImage ? backgroundImage.url : ''})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        position: 'relative',
-      } as React.CSSProperties)
-    : {}
+  // We'll use the Media component for the background image instead of inline styles
 
   return (
     <section
-      className={`w-full max-sm:py-24 py-12 md:py-24 -mt-[50px] lg:h-screen relative`}
-      style={backgroundStyle}
+      className={`w-full max-sm:h-screen max-sm:py-0 py-12 md:py-24 -mt-[50px] lg:h-screen relative min-h-[500px]`}
     >
+      {/* Background image using Media component */}
+      {backgroundImage && (
+        <div className="absolute inset-0 overflow-hidden z-0 max-sm:h-screen">
+          <Media
+            resource={backgroundImage}
+            className="w-full h-full object-cover max-sm:object-contain"
+            size="100vw"
+          />
+          <div className="absolute inset-0 bg-current opacity-50 mix-blend-overlay" />
+        </div>
+      )}
       <div className="container flex justify-center items-center h-full relative z-10">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <AnimationWrapper

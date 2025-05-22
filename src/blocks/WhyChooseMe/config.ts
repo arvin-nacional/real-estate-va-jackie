@@ -5,6 +5,15 @@ export const WhyChooseMe: Block = {
   interfaceName: 'WhyChooseMeBlock',
   fields: [
     {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Background Image',
+      admin: {
+        description: 'Optional. If provided, this image will be used as the background for the why choose me section.',
+      },
+    },
+    {
       name: 'backgroundType',
       type: 'select',
       required: true,

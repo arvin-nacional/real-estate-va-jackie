@@ -10,6 +10,25 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'theme',
+      type: 'select',
+      required: true,
+      defaultValue: 'light',
+      options: [
+        {
+          label: 'Light',
+          value: 'light',
+        },
+        {
+          label: 'Dark',
+          value: 'dark',
+        },
+      ],
+      admin: {
+        description: 'Choose the background style for the footer section',
+      },
+    },
+    {
       name: 'navItems',
       type: 'array',
       fields: [

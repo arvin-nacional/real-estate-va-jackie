@@ -4,6 +4,7 @@ import React from 'react'
 import { CheckCircle } from 'lucide-react'
 import { Media } from '@/components/Media'
 import AnimationWrapper from '@/components/AnimationWrapper'
+import type { WhyChooseMeBlock as WhyChooseMeBlockType } from '@/payload-types'
 
 // Define the benefit item interface
 interface BenefitItem {
@@ -11,20 +12,11 @@ interface BenefitItem {
   description: string
 }
 
-// Define the WhyChooseMeBlock interface
-interface WhyChooseMeBlockType {
-  heading?: string
-  subheading?: string
-  image?: any // Media type
-  benefits?: BenefitItem[]
-  backgroundType?: 'white' | 'gray' | 'accent'
-  imagePosition?: 'left' | 'right'
-}
-
 export const WhyChooseMeBlock: React.FC<WhyChooseMeBlockType> = ({
   heading,
   subheading,
   image,
+  backgroundImage,
   benefits = [],
   backgroundType,
   imagePosition = 'right',
@@ -95,9 +87,16 @@ export const WhyChooseMeBlock: React.FC<WhyChooseMeBlockType> = ({
   )
 
   return (
-    <section className={`w-full py-12 md:py-24 lg:py-32 ${backgroundClass}`}>
-      <div className="container px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
+    <section className={`w-full py-12 md:py-24 lg:py-32 ${backgroundClass} relative`}>
+      {/* Background image using Media component */}
+      {backgroundImage && (
+        <div className="absolute inset-0 overflow-hidden z-0">
+          <Media resource={backgroundImage} className="w-full h-full object-cover" size="100vw" />
+          <div className="absolute inset-0 bg-current opacity-50 mix-blend-overlay" />
+        </div>
+      )}
+      <div className="container px-4 md:px-6 relative z-10">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           {imagePosition === 'left' ? (
             <>
               {imageSection}

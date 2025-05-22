@@ -5,6 +5,25 @@ export const AnimatedTestimonials: Block = {
   interfaceName: 'AnimatedTestimonialsBlock',
   fields: [
     {
+      name: 'backgroundType',
+      type: 'select',
+      required: true,
+      defaultValue: 'white',
+      options: [
+        {
+          label: 'White Background',
+          value: 'white',
+        },
+        {
+          label: 'Gray Background',
+          value: 'gray',
+        },
+      ],
+      admin: {
+        description: 'Choose the background style for this testimonials section',
+      },
+    },
+    {
       name: 'heading',
       type: 'text',
       label: 'Heading',

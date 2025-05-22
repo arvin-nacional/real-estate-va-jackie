@@ -5,21 +5,29 @@ import { ArrowRight } from 'lucide-react'
 
 import type { CallToActionBlock as CTABlockProps } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
+import { Media } from '@/components/Media'
 
 export const CallToActionBlock: React.FC<CTABlockProps> = (props) => {
   const { heading, description, links } = props
-  // Handle the backgroundType field that will be available after PayloadCMS types are regenerated
-  // @ts-ignore - Property will exist once PayloadCMS regenerates types
+  // Handle the backgroundType and backgroundImage fields that will be available after PayloadCMS types are regenerated
+  // @ts-ignore - Properties will exist once PayloadCMS regenerates types
   const backgroundType = props.backgroundType || 'colored'
-  // Extract link data if available, otherwise use default values
-  // const buttonLink = (links && links[0]?.link?.url) || '/contact'
-  // const buttonText = (links && links[0]?.link?.label) || 'Get in Touch'
+  // @ts-ignore - Properties will exist once PayloadCMS regenerates types
+  const backgroundImage = props.backgroundImage
+
   // Determine background class based on backgroundType
   const backgroundClass = backgroundType === 'white' ? 'bg-white' : 'bg-gray-50'
 
   return (
-    <section className={`w-full py-12 md:py-24 lg:py-32 ${backgroundClass}`}>
-      <div className="container px-4 md:px-6">
+    <section className={`w-full py-12 md:py-24 lg:py-32 relative ${backgroundClass}`}>
+      {/* Background image overlay */}
+      {backgroundImage && (
+        <div className="absolute inset-0 overflow-hidden z-0">
+          <Media resource={backgroundImage} className="w-full h-full object-cover" size="100vw" />
+          <div className="absolute inset-0 bg-current opacity-90 mix-blend-overlay" />
+        </div>
+      )}
+      <div className="container px-4 md:px-6 relative z-10">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-800 dark:text-gray-400">

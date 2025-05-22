@@ -11,6 +11,7 @@ export const AnimatedTestimonialsBlock: React.FC<AnimatedTestimonialsBlockType> 
   heading,
   subheading,
   autoplay = true,
+  backgroundType = 'white',
 }) => {
   const [active, setActive] = useState(0)
 
@@ -46,8 +47,11 @@ export const AnimatedTestimonialsBlock: React.FC<AnimatedTestimonialsBlockType> 
     return null
   }
 
+  // Determine background class based on backgroundType
+  const backgroundClass = backgroundType === 'gray' ? 'bg-gray-50' : 'bg-white'
+
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
+    <section className={`w-full py-12 md:py-24 lg:py-32 ${backgroundClass}`}>
       <div className="container px-4 md:px-6">
         {(heading || subheading) && (
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">

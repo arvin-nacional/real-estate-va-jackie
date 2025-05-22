@@ -411,6 +411,10 @@ export interface User {
  */
 export interface CallToActionBlock {
   /**
+   * Optional. If provided, this image will be used as the background for the call to action section.
+   */
+  backgroundImage?: (string | null) | Media;
+  /**
    * Choose the background style for this call to action section
    */
   backgroundType: 'colored' | 'white';
@@ -804,6 +808,10 @@ export interface ServicesPreviewBlock {
  */
 export interface WhyChooseMeBlock {
   /**
+   * Optional. If provided, this image will be used as the background for the why choose me section.
+   */
+  backgroundImage?: (string | null) | Media;
+  /**
    * Choose the background color for this section
    */
   backgroundType: 'white' | 'gray' | 'accent';
@@ -1105,6 +1113,10 @@ export interface ContactSectionBlock {
  * via the `definition` "AnimatedTestimonialsBlock".
  */
 export interface AnimatedTestimonialsBlock {
+  /**
+   * Choose the background style for this testimonials section
+   */
+  backgroundType: 'white' | 'gray';
   /**
    * Optional heading to display above the testimonials
    */
@@ -1501,6 +1513,7 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "CallToActionBlock_select".
  */
 export interface CallToActionBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
   backgroundType?: T;
   heading?: T;
   description?: T;
@@ -1636,6 +1649,7 @@ export interface ServicesPreviewBlockSelect<T extends boolean = true> {
  * via the `definition` "WhyChooseMeBlock_select".
  */
 export interface WhyChooseMeBlockSelect<T extends boolean = true> {
+  backgroundImage?: T;
   backgroundType?: T;
   heading?: T;
   subheading?: T;
@@ -1859,6 +1873,7 @@ export interface ContactSectionBlockSelect<T extends boolean = true> {
  * via the `definition` "AnimatedTestimonialsBlock_select".
  */
 export interface AnimatedTestimonialsBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
   heading?: T;
   subheading?: T;
   autoplay?: T;
@@ -2316,6 +2331,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
+  /**
+   * Choose the background style for the navigation bar
+   */
+  theme: 'light' | 'dark';
   navItems?:
     | {
         link: {
@@ -2345,6 +2364,10 @@ export interface Header {
  */
 export interface Footer {
   id: string;
+  /**
+   * Choose the background style for the footer section
+   */
+  theme: 'light' | 'dark';
   navItems?:
     | {
         link: {
@@ -2380,6 +2403,7 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  theme?: T;
   navItems?:
     | T
     | {
@@ -2403,6 +2427,7 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  theme?: T;
   navItems?:
     | T
     | {
