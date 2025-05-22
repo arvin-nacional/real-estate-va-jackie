@@ -28,13 +28,14 @@ export const CallToAction: Block = {
       name: 'heading',
       type: 'text',
       required: true,
-      defaultValue: 'Ready to Add Some Floral Beauty?',
+      defaultValue: 'Ready to Grow Your Business?',
     },
     {
       name: 'description',
       type: 'textarea',
       required: true,
-      defaultValue: 'Contact us today to discuss your custom crochet flower needs.',
+      defaultValue:
+        'Let me handle the administrative tasks while you focus on closing deals and building relationships.',
     },
     linkGroup({
       appearances: ['default', 'outline'],

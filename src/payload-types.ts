@@ -206,6 +206,8 @@ export interface Page {
     | ExpertiseBlock
     | ApproachBlock
     | FAQBlock
+    | ServicesDetailBlock
+    | PricingPackagesBlock
   )[];
   meta?: {
     title?: string | null;
@@ -989,6 +991,68 @@ export interface FAQBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesDetailBlock".
+ */
+export interface ServicesDetailBlock {
+  backgroundType?: ('colored' | 'white') | null;
+  /**
+   * Add categories of services (e.g., Core Services, Marketing Services)
+   */
+  serviceCategories: {
+    title: string;
+    /**
+     * Add services that belong to this category
+     */
+    services: {
+      title: string;
+      /**
+       * Add features or benefits of this service
+       */
+      features: {
+        feature: string;
+        id?: string | null;
+      }[];
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'servicesDetail';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingPackagesBlock".
+ */
+export interface PricingPackagesBlock {
+  backgroundType?: ('colored' | 'white') | null;
+  title: string;
+  buttonText: string;
+  buttonLink: string;
+  /**
+   * Add your service packages with pricing details
+   */
+  packages: {
+    title: string;
+    description: string;
+    price: string;
+    interval: string;
+    isPopular?: boolean | null;
+    /**
+     * Add features included in this package
+     */
+    features: {
+      feature: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pricingPackages';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1287,6 +1351,8 @@ export interface PagesSelect<T extends boolean = true> {
         expertise?: T | ExpertiseBlockSelect<T>;
         approach?: T | ApproachBlockSelect<T>;
         faq?: T | FAQBlockSelect<T>;
+        servicesDetail?: T | ServicesDetailBlockSelect<T>;
+        pricingPackages?: T | PricingPackagesBlockSelect<T>;
       };
   meta?:
     | T
@@ -1553,6 +1619,61 @@ export interface FAQBlockSelect<T extends boolean = true> {
     | {
         question?: T;
         answer?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesDetailBlock_select".
+ */
+export interface ServicesDetailBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  serviceCategories?:
+    | T
+    | {
+        title?: T;
+        services?:
+          | T
+          | {
+              title?: T;
+              features?:
+                | T
+                | {
+                    feature?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingPackagesBlock_select".
+ */
+export interface PricingPackagesBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  title?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  packages?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        price?: T;
+        interval?: T;
+        isPopular?: T;
+        features?:
+          | T
+          | {
+              feature?: T;
+              id?: T;
+            };
         id?: T;
       };
   id?: T;
@@ -2028,6 +2149,13 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  description?: string | null;
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  facebook?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2073,6 +2201,13 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  description?: T;
+  address?: T;
+  phone?: T;
+  email?: T;
+  facebook?: T;
+  twitter?: T;
+  instagram?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

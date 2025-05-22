@@ -16,6 +16,8 @@ import { StoryBLock } from '@/blocks/Story/Component'
 import { ExpertiseBlock } from '@/blocks/Expertise/Component'
 import { ApproachBlock } from '@/blocks/Approach/Component'
 import { FAQBlock } from '@/blocks/FAQ/Component'
+import { ServicesDetailBlock } from '@/blocks/ServicesDetail/Component'
+import { PricingPackagesBlock } from '@/blocks/PricingPackages/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -32,6 +34,8 @@ const blockComponents = {
   expertise: ExpertiseBlock,
   approach: ApproachBlock,
   faq: FAQBlock,
+  servicesDetail: ServicesDetailBlock,
+  pricingPackages: PricingPackagesBlock,
 }
 
 export const RenderBlocks: React.FC<{

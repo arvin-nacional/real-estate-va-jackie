@@ -25,6 +25,34 @@ export const Footer: GlobalConfig = {
         },
       },
     },
+    {
+      name: 'description',
+      type: 'text',
+    },
+    {
+      name: 'address',
+      type: 'text',
+    },
+    {
+      name: 'phone',
+      type: 'text',
+    },
+    {
+      name: 'email',
+      type: 'text',
+    },
+    {
+      name: 'facebook',
+      type: 'text',
+    },
+    {
+      name: 'twitter',
+      type: 'text',
+    },
+    {
+      name: 'instagram',
+      type: 'text',
+    },
   ],
   hooks: {
     afterChange: [revalidateFooter],

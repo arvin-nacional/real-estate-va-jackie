@@ -16,6 +16,8 @@ import { Story } from '../../blocks/Story/config'
 import { Expertise } from '../../blocks/Expertise/config'
 import { Approach } from '../../blocks/Approach/config'
 import { FAQ } from '../../blocks/FAQ/config'
+import { ServicesDetail } from '../../blocks/ServicesDetail/config'
+import { PricingPackages } from '../../blocks/PricingPackages/config'
 
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -100,6 +102,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 Expertise,
                 Approach,
                 FAQ,
+                ServicesDetail,
+                PricingPackages,
               ],
               required: true,
               admin: {

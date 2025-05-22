@@ -14,7 +14,6 @@ export const CallToActionBlock: React.FC<CTABlockProps> = (props) => {
   // Extract link data if available, otherwise use default values
   // const buttonLink = (links && links[0]?.link?.url) || '/contact'
   // const buttonText = (links && links[0]?.link?.label) || 'Get in Touch'
-
   // Determine background class based on backgroundType
   const backgroundClass = backgroundType === 'white' ? 'bg-white' : 'bg-gray-50'
 
