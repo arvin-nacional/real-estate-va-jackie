@@ -19,6 +19,8 @@ import { FAQ } from '../../blocks/FAQ/config'
 import { ServicesDetail } from '../../blocks/ServicesDetail/config'
 import { PricingPackages } from '../../blocks/PricingPackages/config'
 import { ContactSection } from '../../blocks/ContactSection/config'
+import { AnimatedTestimonials } from '../../blocks/AnimatedTestimonials/config'
+import { GlowServices } from '../../blocks/GlowServices/config'
 
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -106,6 +108,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 ServicesDetail,
                 PricingPackages,
                 ContactSection,
+                AnimatedTestimonials,
+                GlowServices,
               ],
               required: true,
               admin: {

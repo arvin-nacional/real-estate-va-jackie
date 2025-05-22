@@ -209,6 +209,8 @@ export interface Page {
     | ServicesDetailBlock
     | PricingPackagesBlock
     | ContactSectionBlock
+    | AnimatedTestimonialsBlock
+    | GlowServicesBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1100,6 +1102,82 @@ export interface ContactSectionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnimatedTestimonialsBlock".
+ */
+export interface AnimatedTestimonialsBlock {
+  /**
+   * Optional heading to display above the testimonials
+   */
+  heading?: string | null;
+  /**
+   * Optional subheading to display below the heading
+   */
+  subheading?: string | null;
+  /**
+   * Enable to automatically cycle through testimonials every 5 seconds
+   */
+  autoplay?: boolean | null;
+  /**
+   * Add testimonials to display in the carousel
+   */
+  testimonials?:
+    | {
+        name: string;
+        /**
+         * E.g., "CEO at Company" or "Homeowner"
+         */
+        role?: string | null;
+        quote: string;
+        /**
+         * Upload an image of the person giving the testimonial
+         */
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'animatedTestimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GlowServicesBlock".
+ */
+export interface GlowServicesBlock {
+  heading?: string | null;
+  subheading?: string | null;
+  /**
+   * Enable the interactive glowing border effect on service cards
+   */
+  enableGlow?: boolean | null;
+  /**
+   * Add services to display in the grid
+   */
+  services?:
+    | {
+        title: string;
+        description: string;
+        /**
+         * Select an icon for this service
+         */
+        icon: 'clipboard' | 'chart' | 'message' | 'mail' | 'file' | 'calendar';
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Text for the call-to-action button (leave empty to hide)
+   */
+  buttonText?: string | null;
+  /**
+   * URL for the call-to-action button
+   */
+  buttonLink?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'glowServices';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1401,6 +1479,8 @@ export interface PagesSelect<T extends boolean = true> {
         servicesDetail?: T | ServicesDetailBlockSelect<T>;
         pricingPackages?: T | PricingPackagesBlockSelect<T>;
         contactSection?: T | ContactSectionBlockSelect<T>;
+        animatedTestimonials?: T | AnimatedTestimonialsBlockSelect<T>;
+        glowServices?: T | GlowServicesBlockSelect<T>;
       };
   meta?:
     | T
@@ -1771,6 +1851,47 @@ export interface ContactSectionBlockSelect<T extends boolean = true> {
         formDescription?: T;
         form?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnimatedTestimonialsBlock_select".
+ */
+export interface AnimatedTestimonialsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  autoplay?: T;
+  testimonials?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        quote?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GlowServicesBlock_select".
+ */
+export interface GlowServicesBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  enableGlow?: T;
+  services?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  buttonText?: T;
+  buttonLink?: T;
   id?: T;
   blockName?: T;
 }

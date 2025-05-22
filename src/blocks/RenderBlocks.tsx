@@ -19,6 +19,8 @@ import { FAQBlock } from '@/blocks/FAQ/Component'
 import { ServicesDetailBlock } from '@/blocks/ServicesDetail/Component'
 import { PricingPackagesBlock } from '@/blocks/PricingPackages/Component'
 import { ContactSectionBlock } from '@/blocks/ContactSection/Component'
+import { AnimatedTestimonialsBlock } from '@/blocks/AnimatedTestimonials/Component'
+import { GlowServicesBlock } from '@/blocks/GlowServices/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -38,6 +40,8 @@ const blockComponents = {
   servicesDetail: ServicesDetailBlock,
   pricingPackages: PricingPackagesBlock,
   contactSection: ContactSectionBlock,
+  animatedTestimonials: AnimatedTestimonialsBlock,
+  glowServices: GlowServicesBlock,
 }
 
 export const RenderBlocks: React.FC<{
