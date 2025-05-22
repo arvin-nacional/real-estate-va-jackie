@@ -21,12 +21,13 @@ interface TestimonialCarouselProps {
 }
 
 export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) {
-  // Return empty component if no testimonials are provided
+  const [[page, direction], setPage] = useState([0, 0])
+  const [autoplay, setAutoplay] = useState(true)
+  
+  // Handle early return with empty render after hooks are declared
   if (!testimonials || testimonials.length === 0) {
     return null
   }
-  const [[page, direction], setPage] = useState([0, 0])
-  const [autoplay, setAutoplay] = useState(true)
 
   // We only display one testimonial at a time in the slider
   const activeIndex = page % testimonials.length

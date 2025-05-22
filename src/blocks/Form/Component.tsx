@@ -131,7 +131,7 @@ export const FormBlock: React.FC<
               <div className="mb-4 last:mb-0">
                 <h2 className="text-2xl font-bold mb-4">Send a message</h2>
                 <p className="text-muted-foreground mb-4">
-                  Fill out the form below and I'll get back to you shortly.
+                  Fill out the form below and I&apos;ll get back to you shortly.
                 </p>
                 {formFromProps &&
                   formFromProps.fields &&
