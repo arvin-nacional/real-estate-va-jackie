@@ -120,10 +120,17 @@ export const PricingPackagesBlock: React.FC<PricingPackagesBlockProps> = ({
                 delay={0.1 * (index + 1)}
                 className="h-full"
               >
-                <Card className={cn('flex flex-col h-full', pkg.isPopular ? 'border-primary' : '')}>
+                <Card
+                  className={cn(
+                    'flex flex-col h-full',
+                    pkg.isPopular
+                      ? 'rounded-3xl border border-gray-200 p-2 hover:shadow-md transition-all duration-300 bg-white'
+                      : 'rounded-3xl border border-gray-200 p-2 hover:shadow-md transition-all duration-300 bg-white',
+                  )}
+                >
                   <CardHeader
                     className={cn(
-                      pkg.isPopular ? 'bg-primary text-primary-foreground rounded-t-lg' : '',
+                      pkg.isPopular ? 'bg-primary text-primary-foreground rounded-2xl' : '',
                     )}
                   >
                     {pkg.isPopular && (

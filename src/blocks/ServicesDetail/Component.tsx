@@ -33,7 +33,7 @@ export const ServicesDetailBlock: React.FC<ServicesDetailBlockProps> = ({
                     direction="up"
                     delay={0.1 * (categoryIndex + serviceIndex + 1)}
                   >
-                    <Card>
+                    <Card className="rounded-3xl border border-gray-200 p-2 hover:shadow-md transition-all duration-300 bg-white">
                       <CardHeader>
                         <CardTitle>{service.title}</CardTitle>
                       </CardHeader>

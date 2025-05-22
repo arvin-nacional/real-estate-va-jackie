@@ -39,7 +39,7 @@ export const ApproachBlock: React.FC<ApproachBlockType> = ({
             steps.map((step, index) => (
               <AnimationWrapper
                 key={`step-${index}`}
-                className="flex flex-col items-center space-y-2 border rounded-lg p-6 text-center"
+                className="flex flex-col items-center space-y-2 rounded-3xl border border-gray-200 p-6 text-center hover:shadow-md transition-all duration-300"
                 direction="up"
                 delay={0.1 * (index + 1)}
               >
