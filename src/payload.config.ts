@@ -5,7 +5,7 @@ import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
-
+import { resendAdapter } from '@payloadcms/email-resend'
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
@@ -103,4 +103,9 @@ export default buildConfig({
     },
     tasks: [],
   },
+  email: resendAdapter({
+    apiKey: process.env.RESEND_API_KEY || '',
+    defaultFromAddress: 'jackie@rvinpaul.com',
+    defaultFromName: 'VA Jackie',
+  }),
 })
