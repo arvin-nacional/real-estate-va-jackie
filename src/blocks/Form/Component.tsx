@@ -114,20 +114,25 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-[48rem] py-12">
+    <div className="container lg:max-w-[48rem]">
       {enableIntro && introContent && !hasSubmitted && (
         <RichText className="mb-4 lg:mb-6" data={introContent} enableGutter={false} />
       )}
-      <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
+      <div className="p-4 lg:p-12 rounded-[0.8rem] bg-white shadow-lg">
         <FormProvider {...formMethods}>
           {!isLoading && hasSubmitted && confirmationType === 'message' && (
             <RichText data={confirmationMessage} />
           )}
           {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
           {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
+
           {!hasSubmitted && (
             <form id={formID} onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4 last:mb-0">
+                <h2 className="text-2xl font-bold mb-4">Send a message</h2>
+                <p className="text-muted-foreground mb-4">
+                  Fill out the form below and I'll get back to you shortly.
+                </p>
                 {formFromProps &&
                   formFromProps.fields &&
                   formFromProps.fields?.map((field, index) => {

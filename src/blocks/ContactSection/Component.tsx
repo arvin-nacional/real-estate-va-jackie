@@ -36,11 +36,13 @@ export interface ContactSectionBlockProps {
   formSection?: {
     formTitle?: string
     formDescription?: string
-    form?: FormType | {
-      id: string
-      relationTo: string
-      value: FormType
-    }
+    form?:
+      | FormType
+      | {
+          id: string
+          relationTo: string
+          value: FormType
+        }
   }
   backgroundType?: 'white' | 'colored'
 }
@@ -59,22 +61,19 @@ export const ContactSectionBlock: React.FC<ContactSectionBlockProps> = ({
     hours = 'Monday - Friday: 9am - 5pm EST',
     location = 'Virtual services available nationwide',
   } = contactInfo || {}
-  
+
   const {
     consultationTitle = 'Schedule a Consultation',
     consultationDescription = 'Book a free 30-minute consultation to discuss your needs and how I can help your real estate business.',
     calendlyUrl = 'https://calendly.com',
     calendlyButtonText = 'Book a Time Slot',
   } = consultation || {}
-  
-  const {
-    socialTitle = 'Follow Me',
-    socialLinks = [],
-  } = social || {}
-  
+
+  const { socialTitle = 'Follow Me', socialLinks = [] } = social || {}
+
   const {
     formTitle = 'Send a Message',
-    formDescription = 'Fill out the form below and I\'ll get back to you shortly.',
+    formDescription = "Fill out the form below and I'll get back to you shortly.",
     form = null,
   } = formSection || {}
   // Determine background class based on backgroundType
@@ -105,7 +104,8 @@ export const ContactSectionBlock: React.FC<ContactSectionBlockProps> = ({
   ]
 
   // Use provided social links or default ones
-  const socialLinksToRender = (socialLinks && socialLinks.length > 0) ? socialLinks : defaultSocialLinks
+  const socialLinksToRender =
+    socialLinks && socialLinks.length > 0 ? socialLinks : defaultSocialLinks
 
   // Function to render the appropriate social icon
   const renderSocialIcon = (icon: string) => {
@@ -190,7 +190,7 @@ export const ContactSectionBlock: React.FC<ContactSectionBlockProps> = ({
   return (
     <section className={`w-full py-6 md:py-12 lg:py-24 ${backgroundClass}`}>
       <div className="container px-4 md:px-6">
-        <div className="mx-auto grid max-w-5xl gap-6 py-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-5xl gap-6 py-6 lg:grid-cols-2 items-center">
           <AnimationWrapper direction="fade" delay={0.1} className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
@@ -217,9 +217,7 @@ export const ContactSectionBlock: React.FC<ContactSectionBlockProps> = ({
             <AnimationWrapper direction="fade" delay={0.2}>
               <div>
                 <h2 className="text-2xl font-bold mb-4">{consultationTitle}</h2>
-                <p className="text-muted-foreground mb-4">
-                  {consultationDescription}
-                </p>
+                <p className="text-muted-foreground mb-4">{consultationDescription}</p>
                 <Button asChild size="lg" className="w-full sm:w-auto">
                   <Link href={calendlyUrl} target="_blank">
                     {calendlyButtonText}
@@ -251,22 +249,21 @@ export const ContactSectionBlock: React.FC<ContactSectionBlockProps> = ({
               <>
                 {console.log('Form data:', form)}
                 {(() => {
-                  let formData: any;
+                  let formData: any
                   if (typeof form === 'object' && form !== null) {
                     if ('value' in form && form.value) {
-                      formData = form.value;
+                      formData = form.value
                     } else {
-                      formData = form;
+                      formData = form
                     }
                   } else {
-                    formData = form;
+                    formData = form
                   }
                   return (
-                    <FormBlock 
-                      form={formData as FormType}
-                      enableIntro={false} 
-                    />
-                  );
+                    <AnimationWrapper direction="fade" delay={0.5}>
+                      <FormBlock form={formData as FormType} enableIntro={true} />
+                    </AnimationWrapper>
+                  )
                 })()}
               </>
             ) : (

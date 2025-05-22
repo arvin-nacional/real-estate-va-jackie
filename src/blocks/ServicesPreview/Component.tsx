@@ -89,7 +89,7 @@ export const ServicesPreviewBlock: React.FC<ServicesPreviewBlockType> = ({
           <Link href={buttonLink || '/services'}>
             <Button
               variant="outline"
-              className="border-rose-200 dark:border-rose-800 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-all duration-300 hover:scale-105 hover:shadow-sm"
+              className="border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/30 transition-all duration-300 hover:scale-105 hover:shadow-sm"
             >
               {buttonText || 'View All Services'}
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
